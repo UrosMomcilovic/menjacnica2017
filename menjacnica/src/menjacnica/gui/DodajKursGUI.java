@@ -28,20 +28,20 @@ public class DodajKursGUI extends JFrame {
 	private JPanel contentPane;
 	private JLabel lblSifra;
 	private JLabel lblNaziv;
-	private JTextField textFieldNaziv;
+	public JTextField textFieldNaziv;
 	private JLabel lblProdajniKurs;
 	private JLabel lblKupovniKurs;
-	private JTextField textFieldProdajniKurs;
-	private JTextField textFieldKupovniKurs;
+	public JTextField textFieldProdajniKurs;
+	public JTextField textFieldKupovniKurs;
 	private JLabel lblSrednjiKurs;
 	private JLabel lblSkraceniNaziv;
-	private JTextField textFieldSrednjiKurs;
-	private JTextField textFieldSkraceniNaziv;
+	public JTextField textFieldSrednjiKurs;
+	public JTextField textFieldSkraceniNaziv;
 	private JButton btnDodaj;
 	private JButton btnOdus;
 
 	private MenjacnicaGUI glavniProzor;
-	private JSpinner spinnerSifra;
+	public JSpinner spinnerSifra;
 
 	/**
 	 * Create the frame.
@@ -158,7 +158,7 @@ public class DodajKursGUI extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					unesiKurs();
+					GUIKontroler.unesiKurs();
 				}
 			});
 		}
@@ -183,29 +183,5 @@ public class DodajKursGUI extends JFrame {
 		return spinnerSifra;
 	}
 	
-	private void unesiKurs() {
-		try {
-			Valuta valuta = new Valuta();
-
-			// Punjenje podataka o valuti
-			valuta.setNaziv(textFieldNaziv.getText());
-			valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
-			valuta.setSifra((Integer)(spinnerSifra.getValue()));
-			valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()));
-			valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()));
-			valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()));
-			
-			// Dodavanje valute u kursnu listu
-			glavniProzor.sistem.dodajValutu(valuta);
-
-			// Osvezavanje glavnog prozora
-			glavniProzor.prikaziSveValute();
-			
-			//Zatvaranje DodajValutuGUI prozora
-			dispose();
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(),
-					"Greska", JOptionPane.ERROR_MESSAGE);
-		}
-	}
+	
 }
