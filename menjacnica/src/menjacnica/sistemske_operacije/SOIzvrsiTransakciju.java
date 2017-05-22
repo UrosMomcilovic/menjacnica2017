@@ -1,12 +1,10 @@
 package menjacnica.sistemske_operacije;
 
-import java.util.LinkedList;
-
 import menjacnica.Valuta;
 
 public class SOIzvrsiTransakciju {
 	
-	public static double izvrsi(Valuta valuta,boolean prodaja, double iznos, LinkedList<Valuta> kursnaLista){
+	public static double izvrsi(Valuta valuta,boolean prodaja, double iznos){
 		if (prodaja)
 			return iznos*valuta.getProdajni();
 		else

@@ -34,7 +34,7 @@ public class GUIKontroler {
 	}
 	
 	public static void prikaziDodajKursGUI() {
-		dodajKursGui = new DodajKursGUI(menjacnicaGui);
+		dodajKursGui = new DodajKursGUI();
 		dodajKursGui.setLocationRelativeTo(null);
 		dodajKursGui.setVisible(true);
 	}
@@ -86,17 +86,17 @@ public class GUIKontroler {
 			System.exit(0);
 	}
 	
-	public static void unesiKurs() {
+	public static void unesiKurs(String naziv, String skraceniNaziv, Object sifra, String prodajni, String kupoovni, String srednji) {
 		try {
 			Valuta valuta = new Valuta();
 
 			// Punjenje podataka o valuti
-			valuta.setNaziv(dodajKursGui.textFieldNaziv.getText());
-			valuta.setSkraceniNaziv(dodajKursGui.textFieldSkraceniNaziv.getText());
-			valuta.setSifra((Integer)(dodajKursGui.spinnerSifra.getValue()));
-			valuta.setProdajni(Double.parseDouble(dodajKursGui.textFieldProdajniKurs.getText()));
-			valuta.setKupovni(Double.parseDouble(dodajKursGui.textFieldKupovniKurs.getText()));
-			valuta.setSrednji(Double.parseDouble(dodajKursGui.textFieldSrednjiKurs.getText()));
+			valuta.setNaziv(naziv);
+			valuta.setSkraceniNaziv(skraceniNaziv);
+			valuta.setSifra((Integer)(sifra));
+			valuta.setProdajni(Double.parseDouble(prodajni));
+			valuta.setKupovni(Double.parseDouble(kupoovni));
+			valuta.setSrednji(Double.parseDouble(srednji));
 			
 			// Dodavanje valute u kursnu listu
 			menjacnica.dodajValutu(valuta);
@@ -143,8 +143,7 @@ public class GUIKontroler {
 		
 		if (menjacnicaGui.table.getSelectedRow() != -1) {
 			MenjacnicaTableModel model = (MenjacnicaTableModel)(menjacnicaGui.table.getModel());
-			obrisiKursGui = new ObrisiKursGUI(menjacnicaGui,
-					model.vratiValutu(menjacnicaGui.table.getSelectedRow()));
+			obrisiKursGui = new ObrisiKursGUI(model.vratiValutu(menjacnicaGui.table.getSelectedRow()));
 			obrisiKursGui.setLocationRelativeTo(menjacnicaGui);
 			obrisiKursGui.setVisible(true);
 		}	
@@ -159,8 +158,7 @@ public class GUIKontroler {
 	public static void prikaziIzvrsiZamenuGUI() {
 		if (menjacnicaGui.table.getSelectedRow() != -1) {
 			MenjacnicaTableModel model = (MenjacnicaTableModel)(menjacnicaGui.table.getModel());
-			izvrsiZamenuGui = new IzvrsiZamenuGUI(menjacnicaGui,
-					model.vratiValutu(menjacnicaGui.table.getSelectedRow()));
+			izvrsiZamenuGui = new IzvrsiZamenuGUI(model.vratiValutu(menjacnicaGui.table.getSelectedRow()));
 			izvrsiZamenuGui.setLocationRelativeTo(menjacnicaGui);
 			izvrsiZamenuGui.setVisible(true);
 		}
